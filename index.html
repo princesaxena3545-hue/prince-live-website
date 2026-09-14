@@ -1,164 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PRINCE LIVE</title>
-
-<style>
-body{
-    margin:0;
-    padding:0;
-    background:#000;
-    color:#00ff66;
-    font-family:Courier New, monospace;
-    text-align:center;
-}
-
-.header{
-    padding:25px;
-    border-bottom:2px solid #00ff66;
-    box-shadow:0 0 25px #00ff66;
-}
-
-.logo{
-    font-size:42px;
-    font-weight:bold;
-    text-shadow:0 0 20px #00ff66;
-}
-
-.hero{
-    padding:30px 15px;
-}
-
-.hero h1{
-    text-shadow:0 0 20px #00ff66;
-}
-
-.card{
-    width:90%;
-    max-width:500px;
-    margin:20px auto;
-    padding:20px;
-    background:#050505;
-    border:2px solid #00ff66;
-    border-radius:20px;
-    box-shadow:0 0 20px #00ff66;
-}
-
-.price{
-    font-size:36px;
-    font-weight:bold;
-    color:#00ff66;
-}
-
-.btn{
-    display:inline-block;
-    margin-top:15px;
-    padding:12px 25px;
-    background:#00ff66;
-    color:#000;
-    text-decoration:none;
-    border-radius:10px;
-    font-weight:bold;
-}
-
-.btn:hover{
-    box-shadow:0 0 20px #00ff66;
-}
-
-.footer{
-    margin-top:30px;
-    padding:20px;
-    color:#888;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS Forwarder - Config Encryptor</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 450px;
+        }
+        h2 {
+            text-align: center;
+            color: #38bdf8;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #94a3b8;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        input:focus {
+            outline: none;
+            border-color: #38bdf8;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #0284c7;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0369a1;
+        }
+        textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            color: #34d399;
+            font-family: monospace;
+            font-size: 13px;
+            resize: none;
+            box-sizing: border-box;
+            margin-top: 15px;
+        }
+        .credit {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 12px;
+            color: #64748b;
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="header">
-    <div class="logo">👑 PRINCE LIVE 👑</div>
-</div>
+    <div class="container">
+        <h2>🔒 Config Encryptor</h2>
+        
+        <div class="form-group">
+            <label for="botToken">Telegram Bot Token:</label>
+            <input type="text" id="botToken" placeholder="e.g., 123456789:ABCdefGhIJKlmNoPQRsTUVwxyZ">
+        </div>
 
-<div class="hero">
-    <h1>⚡ PREMIUM ACCESS PORTAL ⚡</h1>
-    <p>SECURE • FAST • PREMIUM • LIFETIME</p>
-</div>
+        <div class="form-group">
+            <label for="chatId">Telegram Chat ID:</label>
+            <input type="text" id="chatId" placeholder="e.g., 987654321">
+        </div>
 
-<div class="card">
-    <h2>🥉 BASIC PLAN</h2>
-    <div class="price">₹99</div>
-    <p>1 Month Access</p>
+        <button onclick="generateConfig()">Generate Base64</button>
 
-    <a class="btn" href="https://t.me/UltraFastPayment_Bot">
-        BUY BASIC ₹99
-    </a>
-</div>
+        <label style="margin-top: 15px;">Generated Encrypted String:</label>
+        <textarea id="output" readonly placeholder="Your encrypted config will appear here..."></textarea>
 
-<div class="card">
-    <h2>🥈 PREMIUM PLAN</h2>
-    <div class="price">₹499</div>
-    <p>Premium Features</p>
+        <div class="credit">Developed by DebDas | @zerodeb</div>
+    </div>
 
-    <a class="btn" href="https://t.me/UltraFastPayment_Bot">
-        BUY PREMIUM ₹499
-    </a>
-</div>
+    <script>
+        function generateConfig() {
+            let token = document.getElementById("botToken").value.trim();
+            let chat = document.getElementById("chatId").value.trim();
 
-<div class="card">
-    <h2>🥇 PERMANENT PLAN</h2>
-    <div class="price">₹999</div>
-    <p>Lifetime Access</p>
+            if (!token || !chat) {
+                alert("দয়া করে Bot Token এবং Chat ID উভয়ই দিন!");
+                return;
+            }
 
-    <a class="btn" href="https://t.me/UltraFastPayment_Bot">
-        BUY LIFETIME ₹999
-    </a>
-</div>
+            // Token এবং Chat ID কে '|' দিয়ে জোড়া লাগানো
+            let combined = token + "|" + chat;
 
-<div class="card">
-    <h2>💳 PAYMENT INFO</h2>
+            // Base64 এ এনক্রিপ্ট করা
+            let encoded = btoa(combined);
 
-    <p><b>UPI ID</b></p>
-    <p>princesaxena4535@okaxis</p>
-
-    <p>
-    Payment karne ke baad screenshot Telegram Bot par bheje.
-    Verification ke baad access/file provide ki jayegi.
-    </p>
-</div>
-
-<div class="card">
-    <h2>📸 INSTAGRAM</h2>
-    <p>@stryx_prince</p>
-
-    <a class="btn" href="https://instagram.com/stryx_prince">
-        OPEN INSTAGRAM
-    </a>
-</div>
-
-<div class="card">
-    <h2>👑 OWNER & HELP</h2>
-
-    <p><b>STRYX PRINCE</b></p>
-    <p>Need Help? Contact Directly</p>
-
-    <a class="btn" href="https://t.me/stryxprince">
-        MESSAGE OWNER
-    </a>
-</div>
-
-<div class="card">
-    <h2>🤖 TELEGRAM BOT</h2>
-
-    <a class="btn" href="https://t.me/UltraFastPayment_Bot">
-        OPEN BOT
-    </a>
-</div>
-
-<div class="footer">
-    © 2026 PRINCE LIVE | All Rights Reserved
-</div>
+            // আউটপুট টেক্সটবক্সে দেখানো
+            document.getElementById("output").value = encoded;
+        }
+    </script>
 
 </body>
 </html>
