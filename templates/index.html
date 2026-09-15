@@ -1,4 +1,40 @@
-<!DOCTYPE html>
+<div class="card">
+    <h2>💎 SELECT PLAN</h2>
+
+    <button onclick="showQR('99')">₹99 PLAN</button>
+    <button onclick="showQR('499')">₹499 PLAN</button>
+    <button onclick="showQR('999')">₹999 PLAN</button>
+
+    <br><br>
+
+    <img id="qrImage" src="" width="250" style="display:none;">
+
+    <br><br>
+
+    <a id="botBtn"
+       href="https://t.me/UltraFastPayment_Bot"
+       target="_blank"
+       style="display:none;">
+       <button>📤 Send Screenshot To Bot</button>
+    </a>
+</div>
+
+<script>
+function showQR(plan) {
+    let img = document.getElementById("qrImage");
+
+    if (plan === "99") {
+        img.src = "/static/qr99.jpg";
+    } else if (plan === "499") {
+        img.src = "/static/qr499.jpg";
+    } else if (plan === "999") {
+        img.src = "/static/qr999.jpg";
+    }
+
+    img.style.display = "block";
+    document.getElementById("botBtn").style.display = "inline";
+}
+</script><!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
