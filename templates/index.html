@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<title>ANUJ X PRINCE NETWORK</title>
+<title>PRINCE LIVE // NETWORK</title>
 
 <style>
 *{box-sizing:border-box}
@@ -14,182 +13,133 @@ html{scroll-behavior:smooth}
 body{
     margin:0;
     min-height:100vh;
-    background:#000;
+    background:#020403;
     color:#00ff66;
     font-family:"Courier New",monospace;
-    text-align:center;
     overflow-x:hidden;
 }
 
-/* BACKGROUND GRID */
+/* MATRIX BACKGROUND */
+#matrix{
+    position:fixed;
+    inset:0;
+    z-index:-5;
+    opacity:.13;
+}
+
+/* GLOW */
 body:before{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
-    opacity:.13;
     background:
-    linear-gradient(#00ff66 1px,transparent 1px),
-    linear-gradient(90deg,#00ff66 1px,transparent 1px);
-    background-size:35px 35px;
-    mask-image:linear-gradient(to bottom,#000,transparent);
+    radial-gradient(circle at 50% 10%,rgba(0,255,102,.16),transparent 35%),
+    radial-gradient(circle at 10% 80%,rgba(0,255,102,.07),transparent 30%);
 }
 
-/* SCAN LINE */
-body:after{
-    content:"";
+/* SCAN */
+.scan{
     position:fixed;
     left:0;
     right:0;
+    top:-10px;
     height:2px;
     background:#00ff66;
-    box-shadow:0 0 18px #00ff66;
-    opacity:.12;
+    box-shadow:0 0 20px #00ff66;
+    opacity:.25;
+    z-index:100;
     animation:scan 5s linear infinite;
     pointer-events:none;
-    z-index:100;
 }
 
 @keyframes scan{
-    from{top:-5px}
-    to{top:105vh}
+    to{top:110vh}
 }
 
-/* LOADING SCREEN */
+/* LOADER */
 #loader{
     position:fixed;
     inset:0;
     background:#000;
+    z-index:9999;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    z-index:9999;
-    transition:opacity .7s;
+    transition:1s;
 }
 
-.loader-logo{
-    font-size:clamp(30px,9vw,55px);
+.loaderLogo{
+    font-size:clamp(34px,10vw,70px);
     font-weight:bold;
+    color:#00ff66;
     text-shadow:
-    0 0 8px #00ff66,
-    0 0 25px #00ff66,
-    0 0 50px #00ff66;
-    animation:glitch 1.2s infinite;
+    0 0 10px #00ff66,
+    0 0 30px #00ff66,
+    0 0 70px #00ff66;
+    animation:glitch .8s infinite;
 }
 
-.loader-text{
-    margin-top:20px;
-    font-size:13px;
-    letter-spacing:3px;
+.loaderSub{
+    margin-top:15px;
+    font-size:12px;
+    letter-spacing:4px;
 }
 
-.loader-bar{
-    width:240px;
+.loaderBar{
+    width:250px;
     height:5px;
-    margin-top:20px;
+    margin-top:25px;
     border:1px solid #00ff66;
 }
 
-.loader-fill{
-    width:0%;
+.loaderFill{
+    width:0;
     height:100%;
     background:#00ff66;
-    box-shadow:0 0 15px #00ff66;
-    animation:load 2.2s forwards;
+    box-shadow:0 0 20px #00ff66;
+    animation:loading 2.4s forwards;
 }
 
-@keyframes load{
+@keyframes loading{
     to{width:100%}
 }
 
 @keyframes glitch{
     0%,100%{transform:translate(0)}
-    20%{transform:translate(-2px,1px)}
-    40%{transform:translate(2px,-1px)}
-    60%{transform:translate(-1px,-2px)}
+    25%{transform:translate(-2px,1px)}
+    50%{transform:translate(2px,-1px)}
+    75%{transform:translate(-1px,-2px)}
 }
 
-/* PARTICLES */
-.particle{
-    position:fixed;
-    width:3px;
-    height:3px;
-    background:#00ff66;
-    border-radius:50%;
-    box-shadow:0 0 8px #00ff66;
-    pointer-events:none;
-    animation:float 7s linear infinite;
-    opacity:.7;
-}
-
-@keyframes float{
-    from{
-        transform:translateY(110vh);
-        opacity:0;
-    }
-    20%{opacity:.7}
-    80%{opacity:.7}
-    to{
-        transform:translateY(-10vh);
-        opacity:0;
-    }
-}
-
-/* HEADER */
-.header{
-    position:relative;
-    width:92%;
-    max-width:700px;
-    margin:20px auto;
-    padding:30px 15px;
+/* TOP BAR */
+.top{
+    width:94%;
+    max-width:1000px;
+    margin:15px auto;
+    padding:10px 15px;
     border:1px solid #00ff66;
-    border-radius:20px;
-    background:rgba(0,15,8,.88);
-    box-shadow:
-    0 0 12px #00ff66,
-    inset 0 0 30px rgba(0,255,102,.08);
-}
-
-.header:before{
-    content:"SYSTEM ONLINE";
-    position:absolute;
-    top:-11px;
-    left:20px;
-    background:#000;
-    padding:3px 10px;
-    font-size:11px;
-    letter-spacing:2px;
-}
-
-.logo{
-    font-size:clamp(28px,8vw,48px);
-    font-weight:bold;
-    line-height:1.1;
-    text-shadow:
-    0 0 6px #00ff66,
-    0 0 18px #00ff66,
-    0 0 35px #00ff66;
-}
-
-.logo span{color:#fff}
-
-.status{
-    display:inline-flex;
+    border-radius:12px;
+    background:rgba(0,15,7,.8);
+    display:flex;
+    justify-content:space-between;
     align-items:center;
-    gap:8px;
-    margin-top:14px;
-    padding:7px 15px;
-    border:1px solid #00ff66;
-    border-radius:20px;
-    font-size:12px;
+    font-size:11px;
+    box-shadow:0 0 15px rgba(0,255,102,.3);
+}
+
+.online{
+    display:flex;
+    align-items:center;
+    gap:7px;
 }
 
 .dot{
     width:8px;
     height:8px;
-    border-radius:50%;
     background:#00ff66;
+    border-radius:50%;
     box-shadow:0 0 12px #00ff66;
     animation:blink 1s infinite;
 }
@@ -198,103 +148,211 @@ body:after{
     50%{opacity:.2}
 }
 
-/* CLOCK */
-#clock{
-    margin-top:12px;
+/* HERO */
+.hero{
+    width:94%;
+    max-width:1000px;
+    min-height:430px;
+    margin:20px auto;
+    border:1px solid #00ff66;
+    border-radius:25px;
+    background:
+    linear-gradient(rgba(0,10,5,.84),rgba(0,5,2,.94));
+    box-shadow:
+    0 0 25px rgba(0,255,102,.4),
+    inset 0 0 70px rgba(0,255,102,.06);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero:after{
+    content:"";
+    position:absolute;
+    inset:15px;
+    border:1px dashed rgba(0,255,102,.2);
+    border-radius:18px;
+    pointer-events:none;
+}
+
+.heroContent{
+    position:relative;
+    z-index:2;
+}
+
+.crown{
+    font-size:45px;
+    filter:drop-shadow(0 0 15px #00ff66);
+}
+
+.heroTitle{
+    margin:10px 0;
+    font-size:clamp(40px,11vw,90px);
+    line-height:.95;
+    color:#fff;
+    text-shadow:
+    0 0 8px #00ff66,
+    0 0 25px #00ff66,
+    0 0 55px #00ff66;
+}
+
+.heroTitle span{
+    color:#00ff66;
+}
+
+.heroSub{
     color:#9cffbd;
-    font-size:13px;
+    letter-spacing:4px;
+    font-size:12px;
+}
+
+.enter{
+    margin-top:25px;
+    padding:14px 30px;
+    border:1px solid #00ff66;
+    border-radius:10px;
+    background:#00ff66;
+    color:#000;
+    font-family:inherit;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 0 20px #00ff66;
+    transition:.25s;
+}
+
+.enter:hover{
+    transform:scale(1.06);
+    box-shadow:
+    0 0 10px #fff,
+    0 0 40px #00ff66;
+}
+
+/* GRID */
+.grid{
+    width:94%;
+    max-width:1000px;
+    margin:20px auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.stat{
+    padding:20px;
+    border:1px solid #075d2a;
+    border-radius:15px;
+    background:rgba(2,12,6,.9);
+    text-align:center;
+    box-shadow:0 0 12px rgba(0,255,102,.15);
+}
+
+.statNumber{
+    font-size:25px;
+    color:#00ff66;
+    font-weight:bold;
+}
+
+.statLabel{
+    margin-top:6px;
+    color:#648f72;
+    font-size:10px;
 }
 
 /* CARDS */
 .card{
-    position:relative;
-    width:92%;
-    max-width:520px;
+    width:94%;
+    max-width:700px;
     margin:20px auto;
-    padding:23px;
-    background:rgba(3,10,6,.92);
+    padding:25px;
     border:1px solid #00ff66;
-    border-radius:18px;
+    border-radius:20px;
+    background:rgba(2,10,5,.94);
     box-shadow:
-    0 0 9px rgba(0,255,102,.7),
-    inset 0 0 25px rgba(0,255,102,.05);
+    0 0 12px rgba(0,255,102,.4),
+    inset 0 0 30px rgba(0,255,102,.04);
     transition:.3s;
 }
 
 .card:hover{
     transform:translateY(-4px);
     box-shadow:
-    0 0 20px #00ff66,
-    inset 0 0 30px rgba(0,255,102,.08);
-}
-
-.card:before{
-    content:"";
-    position:absolute;
-    top:9px;
-    right:11px;
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    background:#00ff66;
-    box-shadow:0 0 12px #00ff66;
+    0 0 25px rgba(0,255,102,.7),
+    inset 0 0 30px rgba(0,255,102,.07);
 }
 
 .card h2{
     color:#fff;
-    text-shadow:0 0 10px #00ff66;
+    text-shadow:0 0 12px #00ff66;
 }
 
 .card p{
     color:#9cffbd;
 }
 
-/* TYPING */
-#typing{
-    min-height:22px;
-    color:#9cffbd;
+/* TERMINAL */
+.terminal{
+    text-align:left;
+    padding:15px;
+    border:1px solid #063d1d;
+    border-radius:10px;
+    background:#000;
+    color:#72ff9f;
+    font-size:12px;
+    line-height:1.8;
 }
 
-/* PLAN BUTTONS */
-.plan-btn{
-    display:block;
-    width:85%;
-    max-width:330px;
-    margin:12px auto;
-    padding:14px;
+.green{color:#00ff66}
+.white{color:#fff}
+
+/* PLANS */
+.plans{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:20px;
+}
+
+.plan{
+    padding:20px 8px;
     border:1px solid #00ff66;
-    border-radius:10px;
-    background:#001b0d;
+    border-radius:14px;
+    background:#001308;
     color:#00ff66;
     font-family:inherit;
-    font-size:17px;
     font-weight:bold;
     cursor:pointer;
-    box-shadow:0 0 8px rgba(0,255,102,.4);
-    transition:.2s;
+    transition:.25s;
 }
 
-.plan-btn:hover,
-.plan-btn.active{
+.plan:hover,
+.plan.active{
     background:#00ff66;
     color:#000;
-    box-shadow:0 0 25px #00ff66;
-    transform:scale(1.04);
+    transform:translateY(-5px) scale(1.03);
+    box-shadow:0 0 30px #00ff66;
+}
+
+.price{
+    display:block;
+    font-size:25px;
+    margin-bottom:6px;
 }
 
 /* QR */
 #qrImage{
-    max-width:250px;
-    width:80%;
-    border:2px solid #00ff66;
-    border-radius:12px;
-    padding:6px;
+    display:none;
+    width:min(280px,85%);
+    margin:25px auto 10px;
+    padding:8px;
     background:#fff;
-    box-shadow:0 0 25px #00ff66;
-    margin-top:10px;
+    border:2px solid #00ff66;
+    border-radius:15px;
+    box-shadow:0 0 30px #00ff66;
 }
 
-/* MAIN BUTTON */
 .btn{
     display:inline-block;
     margin-top:15px;
@@ -304,57 +362,58 @@ body:after{
     text-decoration:none;
     border-radius:10px;
     font-weight:bold;
-    box-shadow:0 0 12px #00ff66;
+    box-shadow:0 0 15px #00ff66;
     transition:.2s;
 }
 
 .btn:hover{
     background:#fff;
-    box-shadow:
-    0 0 10px #fff,
-    0 0 30px #00ff66;
-    transform:translateY(-2px);
+    transform:translateY(-3px);
 }
 
-/* TERMINAL BOX */
-.terminal{
-    text-align:left;
-    background:#020602;
-    border:1px solid #064d22;
-    border-radius:10px;
-    padding:15px;
-    margin-top:15px;
-    color:#72ff9f;
-    font-size:12px;
-    line-height:1.7;
+/* SOCIAL */
+.socialGrid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
 }
-
-.green{color:#00ff66}
-.white{color:#fff}
 
 /* FOOTER */
-.footer{
-    margin-top:30px;
-    padding:25px 15px;
+footer{
+    width:94%;
+    max-width:1000px;
+    margin:35px auto 20px;
+    padding:25px;
+    border-top:1px solid #063d1d;
     color:#52735e;
-    font-size:12px;
+    font-size:11px;
 }
 
-.footer strong{color:#00ff66}
+footer strong{
+    color:#00ff66;
+}
 
 /* MOBILE */
-@media(max-width:450px){
-    .header{
-        margin-top:12px;
-        padding:25px 10px;
+@media(max-width:650px){
+
+    .grid{
+        grid-template-columns:1fr;
     }
 
-    .card{
-        padding:18px 12px;
+    .plans{
+        grid-template-columns:1fr;
     }
 
-    .logo{
-        font-size:30px;
+    .socialGrid{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        min-height:400px;
+    }
+
+    .top{
+        font-size:9px;
     }
 }
 </style>
@@ -362,135 +421,233 @@ body:after{
 
 <body>
 
-<!-- LOADER -->
+<canvas id="matrix"></canvas>
+
+<div class="scan"></div>
+
+<!-- LOADING -->
 <div id="loader">
-    <div class="loader-logo">PRINCE LIVE</div>
-    <div class="loader-text">INITIALIZING NETWORK...</div>
-    <div class="loader-bar">
-        <div class="loader-fill"></div>
+
+    <div class="loaderLogo">
+        PRINCE LIVE
     </div>
+
+    <div class="loaderSub">
+        INITIALIZING SYSTEM
+    </div>
+
+    <div class="loaderBar">
+        <div class="loaderFill"></div>
+    </div>
+
 </div>
 
-<!-- HEADER -->
-<div class="header">
+<!-- TOP -->
+<div class="top">
 
-    <div class="logo">
-        👑 ANUJ X <span>PRINCE</span> 👑<br>
-        NETWORK
+    <div>
+        PRINCE LIVE // V2.0
     </div>
 
-    <div class="status">
+    <div class="online">
         <span class="dot"></span>
-        NETWORK ONLINE
+        SYSTEM ONLINE
     </div>
-
-    <div id="clock"></div>
 
 </div>
 
-<!-- HOME -->
+<!-- HERO -->
+<section class="hero" id="home">
+
+    <div class="heroContent">
+
+        <div class="crown">👑</div>
+
+        <div class="heroTitle">
+            ANUJ X<br>
+            <span>PRINCE</span>
+        </div>
+
+        <div class="heroSub">
+            DIGITAL NETWORK // SECURE ACCESS
+        </div>
+
+        <button class="enter" onclick="enterNetwork()">
+            ENTER NETWORK ⚡
+        </button>
+
+    </div>
+
+</section>
+
+<!-- STATS -->
+<div class="grid">
+
+    <div class="stat">
+        <div class="statNumber" id="time">--:--</div>
+        <div class="statLabel">LOCAL TIME</div>
+    </div>
+
+    <div class="stat">
+        <div class="statNumber">ONLINE</div>
+        <div class="statLabel">NETWORK STATUS</div>
+    </div>
+
+    <div class="stat">
+        <div class="statNumber">SECURE</div>
+        <div class="statLabel">ACCESS STATUS</div>
+    </div>
+
+</div>
+
+<!-- SYSTEM -->
 <div class="card">
 
-    <h2>🏠 HOME</h2>
-
-    <p id="typing"></p>
+    <h2>🖥 SYSTEM CONSOLE</h2>
 
     <div class="terminal">
-        <span class="green">root@prince-live:~$</span> system status<br>
-        <span class="white">Network:</span> ONLINE<br>
-        <span class="white">Security:</span> ACTIVE<br>
-        <span class="white">Access:</span> GRANTED
+
+        <span class="green">root@prince-live:~$</span> connect<br>
+
+        <span class="white">
+        Connection established...
+        </span><br>
+
+        <span class="green">root@prince-live:~$</span> status<br>
+
+        Network: <span class="green">ONLINE</span><br>
+        Security: <span class="green">ACTIVE</span><br>
+        Access: <span class="green">GRANTED</span><br>
+        Server: <span class="green">PRINCE-NET</span>
+
     </div>
 
 </div>
 
 <!-- PLANS -->
-<div class="card">
+<div class="card" id="plans">
 
-    <h2>💎 SELECT PLAN</h2>
+    <h2>💎 SELECT ACCESS PLAN</h2>
 
-    <button class="plan-btn" onclick="showQR('99',this)">
-        ₹99 PLAN
-    </button>
+    <p>
+        Choose your plan to continue.
+    </p>
 
-    <button class="plan-btn" onclick="showQR('499',this)">
-        ₹499 PLAN
-    </button>
+    <div class="plans">
 
-    <button class="plan-btn" onclick="showQR('999',this)">
-        ₹999 PLAN
-    </button>
+        <button class="plan" onclick="showQR('99',this)">
+            <span class="price">₹99</span>
+            BASIC
+        </button>
 
-    <br>
+        <button class="plan" onclick="showQR('499',this)">
+            <span class="price">₹499</span>
+            PREMIUM
+        </button>
 
-    <img id="qrImage" src="" style="display:none;">
+        <button class="plan" onclick="showQR('999',this)">
+            <span class="price">₹999</span>
+            ELITE
+        </button>
 
-    <br>
+    </div>
+
+    <img id="qrImage" src="">
 
     <a id="botBtn"
        href="https://t.me/stryxowner"
        target="_blank"
-       style="display:none"
-       class="btn">
+       class="btn"
+       style="display:none">
+
        📤 SEND SCREENSHOT TO OWNER
+
     </a>
 
 </div>
 
-<!-- INSTAGRAM -->
+<!-- SOCIAL -->
 <div class="card">
 
-    <h2>📸 INSTAGRAM</h2>
+    <h2>🌐 CONNECT</h2>
 
-    <p>Follow for latest updates</p>
+    <div class="socialGrid">
 
-    <a class="btn"
-       href="https://instagram.com/stryx_prince"
-       target="_blank">
-       OPEN INSTAGRAM
-    </a>
+        <a class="btn"
+           href="https://instagram.com/stryx_prince"
+           target="_blank">
+
+           📸 INSTAGRAM
+
+        </a>
+
+        <a class="btn"
+           href="https://t.me/BgmiLitePartner"
+           target="_blank">
+
+           👑 PUBLIC CHAT
+
+        </a>
+
+        <a class="btn"
+           href="https://t.me/stryxowner"
+           target="_blank">
+
+           📩 TELEGRAM
+
+        </a>
+
+        <button class="btn"
+                onclick="copyContact()">
+
+           📋 COPY CONTACT
+
+        </button>
+
+    </div>
 
 </div>
 
-<!-- OWNER -->
+<!-- ABOUT -->
 <div class="card">
 
-    <h2>👑 OWNER & HELP</h2>
+    <h2>👑 PRINCE LIVE NETWORK</h2>
 
-    <p>Need help? Join the public community.</p>
+    <p>
+        Welcome to the official digital access point.
+    </p>
 
-    <a class="btn"
-       href="https://t.me/BgmiLitePartner"
-       target="_blank">
-       JOIN PUBLIC CHAT
-    </a>
+    <div class="terminal">
 
-</div>
+        <span class="green">></span>
+        Fast interface<br>
 
-<!-- TELEGRAM -->
-<div class="card">
+        <span class="green">></span>
+        Cyber security theme<br>
 
-    <h2>📩 TELEGRAM</h2>
+        <span class="green">></span>
+        Mobile optimized<br>
 
-    <p>Direct message to owner</p>
+        <span class="green">></span>
+        Network status active
 
-    <a class="btn"
-       href="https://t.me/stryxowner"
-       target="_blank">
-       MESSAGE @stryxowner
-    </a>
+    </div>
 
 </div>
 
-<!-- FOOTER -->
-<div class="footer">
+<footer>
 
     <strong>ANUJ X PRINCE NETWORK</strong>
+
     <br><br>
 
-    © 2026 ANUJ X PRINCE NETWORK | All Rights Reserved
+    © 2026 ANUJ X PRINCE NETWORK
 
-</div>
+    <br>
+
+    ALL RIGHTS RESERVED
+
+</footer>
 
 <script>
 
@@ -505,77 +662,64 @@ window.addEventListener("load",function(){
 
         setTimeout(function(){
             loader.style.display="none";
-        },700);
+        },1000);
 
-    },2300);
+    },2600);
 
 });
 
 
-/* TYPING EFFECT */
-const text="Welcome To ANUJ X PRINCE NETWORK";
-let index=0;
+/* ENTER NETWORK */
+function enterNetwork(){
 
-function typeText(){
-
-    if(index<text.length){
-
-        document.getElementById("typing").textContent+=text.charAt(index);
-
-        index++;
-
-        setTimeout(typeText,55);
-
-    }
+    document.getElementById("plans").scrollIntoView({
+        behavior:"smooth"
+    });
 
 }
-
-setTimeout(typeText,2500);
 
 
 /* CLOCK */
-function updateClock(){
+function updateTime(){
 
     const now=new Date();
 
-    document.getElementById("clock").textContent=
-        now.toLocaleString("en-IN",{
-            dateStyle:"medium",
-            timeStyle:"medium"
-        });
+    document.getElementById("time").textContent=
+        now.toLocaleTimeString("en-IN");
 
 }
 
-updateClock();
+updateTime();
 
-setInterval(updateClock,1000);
+setInterval(updateTime,1000);
 
 
-/* PLAN + QR */
+/* QR */
 function showQR(plan,button){
 
-    const img=document.getElementById("qrImage");
-    const bot=document.getElementById("botBtn");
-
-    document.querySelectorAll(".plan-btn").forEach(function(btn){
-        btn.classList.remove("active");
+    document.querySelectorAll(".plan")
+    .forEach(function(x){
+        x.classList.remove("active");
     });
 
     button.classList.add("active");
+
+    const img=document.getElementById("qrImage");
+    const bot=document.getElementById("botBtn");
 
     if(plan==="99"){
         img.src="/static/qr99.jpg";
     }
 
-    else if(plan==="499"){
+    if(plan==="499"){
         img.src="/static/qr499.jpg";
     }
 
-    else{
+    if(plan==="999"){
         img.src="/static/qr999.jpg";
     }
 
-    img.style.display="inline-block";
+    img.style.display="block";
     bot.style.display="inline-block";
 
     img.scrollIntoView({
@@ -586,30 +730,82 @@ function showQR(plan,button){
 }
 
 
-/* PARTICLES */
-function createParticle(){
+/* COPY CONTACT */
+function copyContact(){
 
-    const p=document.createElement("div");
+    navigator.clipboard.writeText("@stryxowner");
 
-    p.className="particle";
-
-    p.style.left=Math.random()*100+"vw";
-
-    p.style.animationDuration=
-        (4+Math.random()*6)+"s";
-
-    p.style.animationDelay=
-        Math.random()*3+"s";
-
-    document.body.appendChild(p);
-
-    setTimeout(function(){
-        p.remove();
-    },10000);
+    alert("Telegram username copied!");
 
 }
 
-setInterval(createParticle,500);
+
+/* MATRIX */
+const canvas=document.getElementById("matrix");
+const ctx=canvas.getContext("2d");
+
+function resizeCanvas(){
+
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerHeight;
+
+}
+
+resizeCanvas();
+
+window.addEventListener("resize",resizeCanvas);
+
+const chars=
+"01ABCDEFGHIJKLMNOPQRSTUVWXYZ<>[]{}#$%";
+
+let fontSize=14;
+let columns=Math.floor(window.innerWidth/fontSize);
+
+let drops=[];
+
+function resetDrops(){
+
+    columns=Math.floor(window.innerWidth/fontSize);
+
+    drops=Array(columns).fill(1);
+
+}
+
+resetDrops();
+
+function drawMatrix(){
+
+    ctx.fillStyle="rgba(0,0,0,.08)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle="#00ff66";
+    ctx.font=fontSize+"px monospace";
+
+    for(let i=0;i<drops.length;i++){
+
+        const char=
+            chars[Math.floor(Math.random()*chars.length)];
+
+        ctx.fillText(
+            char,
+            i*fontSize,
+            drops[i]*fontSize
+        );
+
+        if(
+            drops[i]*fontSize>canvas.height &&
+            Math.random()>.975
+        ){
+            drops[i]=0;
+        }
+
+        drops[i]++;
+
+    }
+
+}
+
+setInterval(drawMatrix,45);
 
 </script>
 
