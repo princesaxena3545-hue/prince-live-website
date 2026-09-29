@@ -733,6 +733,25 @@ footer strong{
 </head>
 
 <body>
+<div id="live-clock" style="text-align:center;margin:15px 0;color:#00ffcc;font-weight:700;font-size:18px;">
+  🕒 <span id="clock">00:00:00</span>
+</div>
+<script>
+function updateClock(){
+  const now = new Date();
+  const time = now.toLocaleTimeString('en-IN', {
+    timeZone:'Asia/Kolkata',
+    hour:'2-digit',
+    minute:'2-digit',
+    second:'2-digit',
+    hour12:true
+  });
+  document.getElementById('clock').textContent = time;
+}
+updateClock();
+setInterval(updateClock,1000);
+</script>
+
 
 <div id="progress"></div>
 
