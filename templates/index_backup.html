@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANUJ X PRINCE NETWORK</title>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    background:#000;
+    color:#00ff66;
+    font-family:Courier New, monospace;
+    text-align:center;
+}
+.header{
+    padding:25px;
+    border-bottom:2px solid #00ff66;
+    box-shadow:0 0 25px #00ff66;
+}
+.logo{
+    font-size:42px;
+    font-weight:bold;
+}
+.card{
+    width:90%;
+    max-width:500px;
+    margin:20px auto;
+    padding:20px;
+    background:#050505;
+    border:2px solid #00ff66;
+    border-radius:20px;
+    box-shadow:0 0 20px #00ff66;
+}
+.price{
+    font-size:36px;
+    font-weight:bold;
+}
+.btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:12px 25px;
+    background:#00ff66;
+    color:#000;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:bold;
+}
+input{
+    width:80%;
+    padding:10px;
+    margin:5px;
+}
+.footer{
+    margin-top:30px;
+    padding:20px;
+    color:#888;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <div class="logo">
+👑 ANUJ X PRINCE 👑<br>
+NETWORK
+</div>
+</div>
+
+<div class="card">
+    <h2>🏠 HOME</h2>
+    <p>Welcome To ANUJ X PRINCE NETWORK</p>
+</div>
+
+
+
+<div class="card">
+    <h2>💎 SELECT PLAN</h2>
+
+    <button onclick="showQR('99')">₹99 PLAN</button>
+    <button onclick="showQR('499')">₹499 PLAN</button>
+    <button onclick="showQR('999')">₹999 PLAN</button>
+
+    <br><br>
+
+    <img id="qrImage" src="" width="250" style="display:none;">
+
+    <br><br>
+
+    <a id="botBtn"
+       href="https://t.me/stryxowner"
+       target="_blank"
+       style="display:none;"
+       class="btn">
+       📤 SEND SCREENSHOT TO OWNER
+    </a>
+</div>
+
+<div class="card">
+    <h2>📸 INSTAGRAM</h2>
+    <a class="btn" href="https://instagram.com/stryx_prince">
+        OPEN INSTAGRAM
+    </a>
+</div>
+
+<div class="card">
+    <h2>👑 OWNER & HELP</h2>
+    <a class="btn" href="https://t.me/BgmiLitePartner">
+        JOIN PUBLIC CHAT
+    </a>
+</div>
+
+<div class="card">
+    <h2>📩 TELEGRAM</h2>
+    <a class="btn" href="https://t.me/stryxowner">
+        MESSAGE @stryxowner
+    </a>
+</div>
+
+<div class="footer">
+© 2026 ANUJ X PRINCE NETWORK | All Rights Reserved
+</div>
+
+<script>
+function showQR(plan){
+    let img=document.getElementById("qrImage");
+
+    if(plan==="99"){
+        img.src="/static/qr99.jpg";
+    }
+    else if(plan==="499"){
+        img.src="/static/qr499.jpg";
+    }
+    else{
+        img.src="/static/qr999.jpg";
+    }
+
+    img.style.display="block";
+    document.getElementById("botBtn").style.display="inline-block";
+}
+</script>
+
+</body>
+</html>

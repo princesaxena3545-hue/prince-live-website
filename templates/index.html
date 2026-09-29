@@ -3,90 +3,325 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ANUJ X PRINCE NETWORK</title>
 
 <style>
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     margin:0;
     padding:0;
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 50% 0%, #073d20 0%, #00150b 20%, #000 55%),
+        #000;
+    color:#00ff66;
+    font-family:"Courier New",monospace;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+/* Cyber grid */
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.12;
+    background:
+        linear-gradient(#00ff66 1px,transparent 1px),
+        linear-gradient(90deg,#00ff66 1px,transparent 1px);
+    background-size:35px 35px;
+    mask-image:linear-gradient(to bottom,black,transparent);
+}
+
+/* Scan line */
+body:after{
+    content:"";
+    position:fixed;
+    left:0;
+    right:0;
+    height:2px;
+    background:#00ff66;
+    box-shadow:0 0 15px #00ff66;
+    opacity:.08;
+    animation:scan 5s linear infinite;
+    pointer-events:none;
+    z-index:99;
+}
+
+@keyframes scan{
+    0%{top:-5px}
+    100%{top:105vh}
+}
+
+/* Header */
+.header{
+    position:relative;
+    margin:20px auto;
+    width:92%;
+    max-width:700px;
+    padding:28px 15px;
+    border:1px solid #00ff66;
+    border-radius:18px;
+    background:rgba(0,15,8,.82);
+    box-shadow:
+        0 0 10px #00ff66,
+        inset 0 0 25px rgba(0,255,102,.08);
+}
+
+.header:before{
+    content:"SYSTEM ONLINE";
+    position:absolute;
+    top:-11px;
+    left:20px;
+    padding:3px 10px;
     background:#000;
     color:#00ff66;
-    font-family:Courier New, monospace;
-    text-align:center;
+    font-size:11px;
+    letter-spacing:2px;
 }
-.header{
-    padding:25px;
-    border-bottom:2px solid #00ff66;
-    box-shadow:0 0 25px #00ff66;
-}
+
 .logo{
-    font-size:42px;
+    font-size:clamp(28px,8vw,48px);
     font-weight:bold;
+    line-height:1.1;
+    text-shadow:
+        0 0 5px #00ff66,
+        0 0 15px #00ff66,
+        0 0 35px #00ff66;
+    animation:flicker 3s infinite;
 }
+
+.logo span{
+    color:#fff;
+}
+
+@keyframes flicker{
+    0%,18%,20%,22%,63%,65%,100%{opacity:1}
+    19%,21%,64%{opacity:.55}
+}
+
+/* Cards */
 .card{
-    width:90%;
-    max-width:500px;
+    position:relative;
+    width:92%;
+    max-width:520px;
     margin:20px auto;
-    padding:20px;
-    background:#050505;
-    border:2px solid #00ff66;
-    border-radius:20px;
-    box-shadow:0 0 20px #00ff66;
+    padding:22px;
+    background:rgba(3,10,6,.9);
+    border:1px solid #00ff66;
+    border-radius:18px;
+    box-shadow:
+        0 0 8px rgba(0,255,102,.7),
+        inset 0 0 25px rgba(0,255,102,.05);
 }
+
+.card:before{
+    content:"";
+    position:absolute;
+    top:8px;
+    right:10px;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#00ff66;
+    box-shadow:0 0 10px #00ff66;
+}
+
+.card h2{
+    margin-top:5px;
+    color:#fff;
+    text-shadow:0 0 10px #00ff66;
+}
+
+.card p{
+    color:#9cffbd;
+}
+
+/* Plan buttons */
+.plan-btn{
+    display:block;
+    width:85%;
+    max-width:330px;
+    margin:12px auto;
+    padding:14px;
+    border:1px solid #00ff66;
+    border-radius:10px;
+    background:#001b0d;
+    color:#00ff66;
+    font-family:inherit;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 0 8px rgba(0,255,102,.4);
+    transition:.2s;
+}
+
+.plan-btn:hover,
+.plan-btn:active{
+    background:#00ff66;
+    color:#000;
+    box-shadow:0 0 25px #00ff66;
+    transform:scale(1.03);
+}
+
+/* Price */
 .price{
     font-size:36px;
     font-weight:bold;
+    text-shadow:0 0 15px #00ff66;
 }
+
+/* QR */
+#qrImage{
+    max-width:250px;
+    width:80%;
+    border:2px solid #00ff66;
+    border-radius:12px;
+    padding:6px;
+    background:#fff;
+    box-shadow:0 0 25px #00ff66;
+}
+
+/* Links */
 .btn{
     display:inline-block;
     margin-top:15px;
-    padding:12px 25px;
+    padding:13px 24px;
     background:#00ff66;
     color:#000;
     text-decoration:none;
     border-radius:10px;
     font-weight:bold;
+    box-shadow:0 0 12px #00ff66;
+    transition:.2s;
 }
-input{
-    width:80%;
-    padding:10px;
-    margin:5px;
+
+.btn:hover,
+.btn:active{
+    background:#fff;
+    box-shadow:
+        0 0 10px #fff,
+        0 0 30px #00ff66;
+    transform:translateY(-2px);
 }
+
+/* Status */
+.status{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:10px;
+    padding:7px 14px;
+    border:1px solid #00ff66;
+    border-radius:20px;
+    font-size:12px;
+    color:#9cffbd;
+}
+
+.dot{
+    width:8px;
+    height:8px;
+    background:#00ff66;
+    border-radius:50%;
+    box-shadow:0 0 10px #00ff66;
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:.2}
+}
+
 .footer{
     margin-top:30px;
-    padding:20px;
-    color:#888;
+    padding:25px 15px;
+    color:#52735e;
+    font-size:12px;
+}
+
+.footer strong{
+    color:#00ff66;
+}
+
+/* Mobile */
+@media(max-width:450px){
+    .header{
+        margin-top:12px;
+        padding:24px 10px;
+    }
+
+    .card{
+        padding:18px 12px;
+    }
+
+    .logo{
+        font-size:30px;
+    }
 }
 </style>
 </head>
+
 <body>
 
 <div class="header">
+
     <div class="logo">
-👑 ANUJ X PRINCE 👑<br>
-NETWORK
-</div>
+        👑 ANUJ X <span>PRINCE</span> 👑<br>
+        NETWORK
+    </div>
+
+    <div class="status">
+        <span class="dot"></span>
+        NETWORK ONLINE
+    </div>
+
 </div>
 
+
 <div class="card">
+
     <h2>🏠 HOME</h2>
-    <p>Welcome To ANUJ X PRINCE NETWORK</p>
+
+    <p>
+        Welcome To <strong>ANUJ X PRINCE NETWORK</strong>
+    </p>
+
+    <p style="font-size:12px;color:#52735e;">
+        // SECURE ACCESS POINT
+    </p>
+
 </div>
 
 
-
 <div class="card">
+
     <h2>💎 SELECT PLAN</h2>
 
-    <button onclick="showQR('99')">₹99 PLAN</button>
-    <button onclick="showQR('499')">₹499 PLAN</button>
-    <button onclick="showQR('999')">₹999 PLAN</button>
+    <button class="plan-btn" onclick="showQR('99')">
+        ₹99 PLAN
+    </button>
 
-    <br><br>
+    <button class="plan-btn" onclick="showQR('499')">
+        ₹499 PLAN
+    </button>
+
+    <button class="plan-btn" onclick="showQR('999')">
+        ₹999 PLAN
+    </button>
+
+    <br>
 
     <img id="qrImage" src="" width="250" style="display:none;">
 
-    <br><br>
+    <br>
 
     <a id="botBtn"
        href="https://t.me/stryxowner"
@@ -95,50 +330,86 @@ NETWORK
        class="btn">
        📤 SEND SCREENSHOT TO OWNER
     </a>
+
 </div>
 
+
 <div class="card">
+
     <h2>📸 INSTAGRAM</h2>
-    <a class="btn" href="https://instagram.com/stryx_prince">
-        OPEN INSTAGRAM
+
+    <a class="btn"
+       href="https://instagram.com/stryx_prince"
+       target="_blank">
+       OPEN INSTAGRAM
     </a>
+
 </div>
 
+
 <div class="card">
+
     <h2>👑 OWNER & HELP</h2>
-    <a class="btn" href="https://t.me/BgmiLitePartner">
-        JOIN PUBLIC CHAT
+
+    <a class="btn"
+       href="https://t.me/BgmiLitePartner"
+       target="_blank">
+       JOIN PUBLIC CHAT
     </a>
+
 </div>
 
+
 <div class="card">
+
     <h2>📩 TELEGRAM</h2>
-    <a class="btn" href="https://t.me/stryxowner">
-        MESSAGE @stryxowner
+
+    <a class="btn"
+       href="https://t.me/stryxowner"
+       target="_blank">
+       MESSAGE @stryxowner
     </a>
+
 </div>
+
 
 <div class="footer">
-© 2026 ANUJ X PRINCE NETWORK | All Rights Reserved
+
+    <strong>ANUJ X PRINCE NETWORK</strong><br><br>
+
+    © 2026 ANUJ X PRINCE NETWORK | All Rights Reserved
+
 </div>
 
+
 <script>
+
 function showQR(plan){
-    let img=document.getElementById("qrImage");
 
-    if(plan==="99"){
-        img.src="/static/qr99.jpg";
+    let img = document.getElementById("qrImage");
+    let bot = document.getElementById("botBtn");
+
+    if(plan === "99"){
+        img.src = "/static/qr99.jpg";
     }
-    else if(plan==="499"){
-        img.src="/static/qr499.jpg";
+
+    else if(plan === "499"){
+        img.src = "/static/qr499.jpg";
     }
+
     else{
-        img.src="/static/qr999.jpg";
+        img.src = "/static/qr999.jpg";
     }
 
-    img.style.display="block";
-    document.getElementById("botBtn").style.display="inline-block";
+    img.style.display = "block";
+    bot.style.display = "inline-block";
+
+    img.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
 }
+
 </script>
 
 </body>
