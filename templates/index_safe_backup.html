@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>ANUJ X PRINCE NETWORK</title>
+
+<style>
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+    margin:0;
+    min-height:100vh;
+    background:#000;
+    color:#00ff66;
+    font-family:"Courier New",monospace;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+/* BACKGROUND GRID */
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.13;
+    background:
+    linear-gradient(#00ff66 1px,transparent 1px),
+    linear-gradient(90deg,#00ff66 1px,transparent 1px);
+    background-size:35px 35px;
+    mask-image:linear-gradient(to bottom,#000,transparent);
+}
+
+/* SCAN LINE */
+body:after{
+    content:"";
+    position:fixed;
+    left:0;
+    right:0;
+    height:2px;
+    background:#00ff66;
+    box-shadow:0 0 18px #00ff66;
+    opacity:.12;
+    animation:scan 5s linear infinite;
+    pointer-events:none;
+    z-index:100;
+}
+
+@keyframes scan{
+    from{top:-5px}
+    to{top:105vh}
+}
+
+/* LOADING SCREEN */
+#loader{
+    position:fixed;
+    inset:0;
+    background:#000;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    transition:opacity .7s;
+}
+
+.loader-logo{
+    font-size:clamp(30px,9vw,55px);
+    font-weight:bold;
+    text-shadow:
+    0 0 8px #00ff66,
+    0 0 25px #00ff66,
+    0 0 50px #00ff66;
+    animation:glitch 1.2s infinite;
+}
+
+.loader-text{
+    margin-top:20px;
+    font-size:13px;
+    letter-spacing:3px;
+}
+
+.loader-bar{
+    width:240px;
+    height:5px;
+    margin-top:20px;
+    border:1px solid #00ff66;
+}
+
+.loader-fill{
+    width:0%;
+    height:100%;
+    background:#00ff66;
+    box-shadow:0 0 15px #00ff66;
+    animation:load 2.2s forwards;
+}
+
+@keyframes load{
+    to{width:100%}
+}
+
+@keyframes glitch{
+    0%,100%{transform:translate(0)}
+    20%{transform:translate(-2px,1px)}
+    40%{transform:translate(2px,-1px)}
+    60%{transform:translate(-1px,-2px)}
+}
+
+/* PARTICLES */
+.particle{
+    position:fixed;
+    width:3px;
+    height:3px;
+    background:#00ff66;
+    border-radius:50%;
+    box-shadow:0 0 8px #00ff66;
+    pointer-events:none;
+    animation:float 7s linear infinite;
+    opacity:.7;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(110vh);
+        opacity:0;
+    }
+    20%{opacity:.7}
+    80%{opacity:.7}
+    to{
+        transform:translateY(-10vh);
+        opacity:0;
+    }
+}
+
+/* HEADER */
+.header{
+    position:relative;
+    width:92%;
+    max-width:700px;
+    margin:20px auto;
+    padding:30px 15px;
+    border:1px solid #00ff66;
+    border-radius:20px;
+    background:rgba(0,15,8,.88);
+    box-shadow:
+    0 0 12px #00ff66,
+    inset 0 0 30px rgba(0,255,102,.08);
+}
+
+.header:before{
+    content:"SYSTEM ONLINE";
+    position:absolute;
+    top:-11px;
+    left:20px;
+    background:#000;
+    padding:3px 10px;
+    font-size:11px;
+    letter-spacing:2px;
+}
+
+.logo{
+    font-size:clamp(28px,8vw,48px);
+    font-weight:bold;
+    line-height:1.1;
+    text-shadow:
+    0 0 6px #00ff66,
+    0 0 18px #00ff66,
+    0 0 35px #00ff66;
+}
+
+.logo span{color:#fff}
+
+.status{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:14px;
+    padding:7px 15px;
+    border:1px solid #00ff66;
+    border-radius:20px;
+    font-size:12px;
+}
+
+.dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#00ff66;
+    box-shadow:0 0 12px #00ff66;
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:.2}
+}
+
+/* CLOCK */
+#clock{
+    margin-top:12px;
+    color:#9cffbd;
+    font-size:13px;
+}
+
+/* CARDS */
+.card{
+    position:relative;
+    width:92%;
+    max-width:520px;
+    margin:20px auto;
+    padding:23px;
+    background:rgba(3,10,6,.92);
+    border:1px solid #00ff66;
+    border-radius:18px;
+    box-shadow:
+    0 0 9px rgba(0,255,102,.7),
+    inset 0 0 25px rgba(0,255,102,.05);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:
+    0 0 20px #00ff66,
+    inset 0 0 30px rgba(0,255,102,.08);
+}
+
+.card:before{
+    content:"";
+    position:absolute;
+    top:9px;
+    right:11px;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#00ff66;
+    box-shadow:0 0 12px #00ff66;
+}
+
+.card h2{
+    color:#fff;
+    text-shadow:0 0 10px #00ff66;
+}
+
+.card p{
+    color:#9cffbd;
+}
+
+/* TYPING */
+#typing{
+    min-height:22px;
+    color:#9cffbd;
+}
+
+/* PLAN BUTTONS */
+.plan-btn{
+    display:block;
+    width:85%;
+    max-width:330px;
+    margin:12px auto;
+    padding:14px;
+    border:1px solid #00ff66;
+    border-radius:10px;
+    background:#001b0d;
+    color:#00ff66;
+    font-family:inherit;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 0 8px rgba(0,255,102,.4);
+    transition:.2s;
+}
+
+.plan-btn:hover,
+.plan-btn.active{
+    background:#00ff66;
+    color:#000;
+    box-shadow:0 0 25px #00ff66;
+    transform:scale(1.04);
+}
+
+/* QR */
+#qrImage{
+    max-width:250px;
+    width:80%;
+    border:2px solid #00ff66;
+    border-radius:12px;
+    padding:6px;
+    background:#fff;
+    box-shadow:0 0 25px #00ff66;
+    margin-top:10px;
+}
+
+/* MAIN BUTTON */
+.btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:13px 24px;
+    background:#00ff66;
+    color:#000;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:bold;
+    box-shadow:0 0 12px #00ff66;
+    transition:.2s;
+}
+
+.btn:hover{
+    background:#fff;
+    box-shadow:
+    0 0 10px #fff,
+    0 0 30px #00ff66;
+    transform:translateY(-2px);
+}
+
+/* TERMINAL BOX */
+.terminal{
+    text-align:left;
+    background:#020602;
+    border:1px solid #064d22;
+    border-radius:10px;
+    padding:15px;
+    margin-top:15px;
+    color:#72ff9f;
+    font-size:12px;
+    line-height:1.7;
+}
+
+.green{color:#00ff66}
+.white{color:#fff}
+
+/* FOOTER */
+.footer{
+    margin-top:30px;
+    padding:25px 15px;
+    color:#52735e;
+    font-size:12px;
+}
+
+.footer strong{color:#00ff66}
+
+/* MOBILE */
+@media(max-width:450px){
+    .header{
+        margin-top:12px;
+        padding:25px 10px;
+    }
+
+    .card{
+        padding:18px 12px;
+    }
+
+    .logo{
+        font-size:30px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+    <div class="loader-logo">PRINCE LIVE</div>
+    <div class="loader-text">INITIALIZING NETWORK...</div>
+    <div class="loader-bar">
+        <div class="loader-fill"></div>
+    </div>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+
+    <div class="logo">
+        👑 ANUJ X <span>PRINCE</span> 👑<br>
+        NETWORK
+    </div>
+
+    <div class="status">
+        <span class="dot"></span>
+        NETWORK ONLINE
+    </div>
+
+    <div id="clock"></div>
+
+</div>
+
+<!-- HOME -->
+<div class="card">
+
+    <h2>🏠 HOME</h2>
+
+    <p id="typing"></p>
+
+    <div class="terminal">
+        <span class="green">root@prince-live:~$</span> system status<br>
+        <span class="white">Network:</span> ONLINE<br>
+        <span class="white">Security:</span> ACTIVE<br>
+        <span class="white">Access:</span> GRANTED
+    </div>
+
+</div>
+
+<!-- PLANS -->
+<div class="card">
+
+    <h2>💎 SELECT PLAN</h2>
+
+    <button class="plan-btn" onclick="showQR('99',this)">
+        ₹99 PLAN
+    </button>
+
+    <button class="plan-btn" onclick="showQR('499',this)">
+        ₹499 PLAN
+    </button>
+
+    <button class="plan-btn" onclick="showQR('999',this)">
+        ₹999 PLAN
+    </button>
+
+    <br>
+
+    <img id="qrImage" src="" style="display:none;">
+
+    <br>
+
+    <a id="botBtn"
+       href="https://t.me/stryxowner"
+       target="_blank"
+       style="display:none"
+       class="btn">
+       📤 SEND SCREENSHOT TO OWNER
+    </a>
+
+</div>
+
+<!-- INSTAGRAM -->
+<div class="card">
+
+    <h2>📸 INSTAGRAM</h2>
+
+    <p>Follow for latest updates</p>
+
+    <a class="btn"
+       href="https://instagram.com/stryx_prince"
+       target="_blank">
+       OPEN INSTAGRAM
+    </a>
+
+</div>
+
+<!-- OWNER -->
+<div class="card">
+
+    <h2>👑 OWNER & HELP</h2>
+
+    <p>Need help? Join the public community.</p>
+
+    <a class="btn"
+       href="https://t.me/BgmiLitePartner"
+       target="_blank">
+       JOIN PUBLIC CHAT
+    </a>
+
+</div>
+
+<!-- TELEGRAM -->
+<div class="card">
+
+    <h2>📩 TELEGRAM</h2>
+
+    <p>Direct message to owner</p>
+
+    <a class="btn"
+       href="https://t.me/stryxowner"
+       target="_blank">
+       MESSAGE @stryxowner
+    </a>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+
+    <strong>ANUJ X PRINCE NETWORK</strong>
+    <br><br>
+
+    © 2026 ANUJ X PRINCE NETWORK | All Rights Reserved
+
+</div>
+
+<script>
+
+/* LOADER */
+window.addEventListener("load",function(){
+
+    setTimeout(function(){
+
+        const loader=document.getElementById("loader");
+
+        loader.style.opacity="0";
+
+        setTimeout(function(){
+            loader.style.display="none";
+        },700);
+
+    },2300);
+
+});
+
+
+/* TYPING EFFECT */
+const text="Welcome To ANUJ X PRINCE NETWORK";
+let index=0;
+
+function typeText(){
+
+    if(index<text.length){
+
+        document.getElementById("typing").textContent+=text.charAt(index);
+
+        index++;
+
+        setTimeout(typeText,55);
+
+    }
+
+}
+
+setTimeout(typeText,2500);
+
+
+/* CLOCK */
+function updateClock(){
+
+    const now=new Date();
+
+    document.getElementById("clock").textContent=
+        now.toLocaleString("en-IN",{
+            dateStyle:"medium",
+            timeStyle:"medium"
+        });
+
+}
+
+updateClock();
+
+setInterval(updateClock,1000);
+
+
+/* PLAN + QR */
+function showQR(plan,button){
+
+    const img=document.getElementById("qrImage");
+    const bot=document.getElementById("botBtn");
+
+    document.querySelectorAll(".plan-btn").forEach(function(btn){
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    if(plan==="99"){
+        img.src="/static/qr99.jpg";
+    }
+
+    else if(plan==="499"){
+        img.src="/static/qr499.jpg";
+    }
+
+    else{
+        img.src="/static/qr999.jpg";
+    }
+
+    img.style.display="inline-block";
+    bot.style.display="inline-block";
+
+    img.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+
+}
+
+
+/* PARTICLES */
+function createParticle(){
+
+    const p=document.createElement("div");
+
+    p.className="particle";
+
+    p.style.left=Math.random()*100+"vw";
+
+    p.style.animationDuration=
+        (4+Math.random()*6)+"s";
+
+    p.style.animationDelay=
+        Math.random()*3+"s";
+
+    document.body.appendChild(p);
+
+    setTimeout(function(){
+        p.remove();
+    },10000);
+
+}
+
+setInterval(createParticle,500);
+
+</script>
+
+</body>
+</html>
