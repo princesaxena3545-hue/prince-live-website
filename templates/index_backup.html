@@ -3,162 +3,1173 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PRINCE LIVE</title>
+<meta name="theme-color" content="#020503">
+<meta name="description" content="PRINCE LIVE — Premium Digital Network">
+<title>PRINCE LIVE // ULTRA NETWORK</title>
 
 <style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --green:#00ff66;
+  --green2:#00c853;
+  --dark:#010302;
+  --card:#07100a;
+  --line:rgba(0,255,102,.18);
+  --text:#eafff1;
+  --muted:#7d9b87;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
-    margin:0;
-    padding:0;
-    background:#000;
-    color:#00ff66;
-    font-family:Courier New, monospace;
-    text-align:center;
+  background:#010302;
+  color:var(--text);
+  font-family:"Courier New",monospace;
+  overflow-x:hidden;
 }
 
-.header{
-    padding:25px;
-    border-bottom:2px solid #00ff66;
-    box-shadow:0 0 25px #00ff66;
+/* BACKGROUND */
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-3;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(0,255,102,.10),transparent 28%),
+    radial-gradient(circle at 85% 70%,rgba(0,255,102,.07),transparent 30%),
+    #010302;
 }
 
-.logo{
-    font-size:42px;
-    font-weight:bold;
-    text-shadow:0 0 20px #00ff66;
+body:after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:999;
+  background:repeating-linear-gradient(
+    0deg,
+    rgba(255,255,255,.015) 0px,
+    rgba(255,255,255,.015) 1px,
+    transparent 1px,
+    transparent 4px
+  );
 }
 
+/* SCROLL BAR */
+#progress{
+  position:fixed;
+  top:0;
+  left:0;
+  width:0;
+  height:3px;
+  background:var(--green);
+  box-shadow:0 0 15px var(--green);
+  z-index:1001;
+}
+
+/* PARTICLES */
+.particle{
+  position:fixed;
+  width:2px;
+  height:2px;
+  background:var(--green);
+  border-radius:50%;
+  opacity:.35;
+  animation:float 8s linear infinite;
+  z-index:-1;
+}
+
+@keyframes float{
+  0%{transform:translateY(100vh);opacity:0}
+  20%{opacity:.5}
+  100%{transform:translateY(-10vh);opacity:0}
+}
+
+/* NAVBAR */
+.nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 6%;
+  background:rgba(1,3,2,.82);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--line);
+}
+
+.brand{
+  color:var(--green);
+  font-size:21px;
+  font-weight:bold;
+  letter-spacing:2px;
+  text-shadow:0 0 12px rgba(0,255,102,.6);
+}
+
+.brand span{
+  color:#fff;
+}
+
+.nav-links{
+  display:flex;
+  gap:25px;
+  list-style:none;
+}
+
+.nav-links a{
+  color:#b9cfc1;
+  text-decoration:none;
+  font-size:13px;
+  transition:.3s;
+}
+
+.nav-links a:hover{
+  color:var(--green);
+  text-shadow:0 0 10px var(--green);
+}
+
+.menu{
+  display:none;
+  font-size:25px;
+  color:var(--green);
+  cursor:pointer;
+}
+
+/* HERO */
 .hero{
-    padding:30px 15px;
+  min-height:88vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:70px 20px;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-ring{
+  position:absolute;
+  width:520px;
+  height:520px;
+  border:1px solid rgba(0,255,102,.15);
+  border-radius:50%;
+  box-shadow:
+    0 0 70px rgba(0,255,102,.05),
+    inset 0 0 70px rgba(0,255,102,.04);
+  animation:rotate 18s linear infinite;
+}
+
+.hero-ring:before,
+.hero-ring:after{
+  content:"";
+  position:absolute;
+  inset:40px;
+  border:1px dashed rgba(0,255,102,.12);
+  border-radius:50%;
+}
+
+.hero-ring:after{
+  inset:100px;
+  border-style:solid;
+}
+
+@keyframes rotate{
+  to{transform:rotate(360deg)}
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:900px;
+}
+
+.badge{
+  display:inline-block;
+  padding:8px 16px;
+  border:1px solid var(--line);
+  background:rgba(0,255,102,.05);
+  color:var(--green);
+  border-radius:30px;
+  font-size:11px;
+  letter-spacing:2px;
+  margin-bottom:22px;
 }
 
 .hero h1{
-    text-shadow:0 0 20px #00ff66;
+  font-size:clamp(45px,10vw,100px);
+  line-height:.95;
+  color:#fff;
+  letter-spacing:-4px;
+  text-shadow:
+    0 0 10px rgba(0,255,102,.35),
+    0 0 40px rgba(0,255,102,.15);
 }
 
-.card{
-    width:90%;
-    max-width:500px;
-    margin:20px auto;
-    padding:20px;
-    background:#050505;
-    border:2px solid #00ff66;
-    border-radius:20px;
-    box-shadow:0 0 20px #00ff66;
+.hero h1 span{
+  color:var(--green);
 }
 
-.price{
-    font-size:36px;
-    font-weight:bold;
-    color:#00ff66;
+.hero-sub{
+  margin:25px auto;
+  max-width:650px;
+  color:#91a99a;
+  line-height:1.8;
+  font-size:14px;
+}
+
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:30px;
 }
 
 .btn{
-    display:inline-block;
-    margin-top:15px;
-    padding:12px 25px;
-    background:#00ff66;
-    color:#000;
-    text-decoration:none;
-    border-radius:10px;
-    font-weight:bold;
+  display:inline-block;
+  padding:14px 25px;
+  border-radius:6px;
+  text-decoration:none;
+  font-weight:bold;
+  font-size:13px;
+  transition:.3s;
+  cursor:pointer;
 }
 
-.btn:hover{
-    box-shadow:0 0 20px #00ff66;
+.btn-primary{
+  color:#001507;
+  background:var(--green);
+  box-shadow:0 0 25px rgba(0,255,102,.25);
 }
 
-.footer{
-    margin-top:30px;
+.btn-primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 35px rgba(0,255,102,.5);
+}
+
+.btn-outline{
+  color:var(--green);
+  border:1px solid var(--green);
+  background:transparent;
+}
+
+.btn-outline:hover{
+  background:rgba(0,255,102,.08);
+}
+
+/* STATUS */
+.status{
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  flex-wrap:wrap;
+  margin-top:50px;
+  color:#718879;
+  font-size:11px;
+}
+
+.status span{
+  color:var(--green);
+}
+
+/* SECTION */
+section{
+  padding:90px 6%;
+}
+
+.section-head{
+  max-width:700px;
+  margin:0 auto 45px;
+  text-align:center;
+}
+
+.tag{
+  color:var(--green);
+  font-size:11px;
+  letter-spacing:3px;
+  margin-bottom:12px;
+}
+
+.section-head h2{
+  font-size:clamp(30px,5vw,50px);
+  color:#fff;
+}
+
+.section-head p{
+  color:var(--muted);
+  margin-top:15px;
+  line-height:1.7;
+}
+
+/* STATS */
+.stats{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border:1px solid var(--line);
+  background:rgba(0,255,102,.025);
+}
+
+.stat{
+  padding:35px 15px;
+  text-align:center;
+  border-right:1px solid var(--line);
+}
+
+.stat:last-child{
+  border-right:0;
+}
+
+.stat-number{
+  font-size:34px;
+  color:var(--green);
+  font-weight:bold;
+  text-shadow:0 0 15px rgba(0,255,102,.4);
+}
+
+.stat-label{
+  color:#728878;
+  font-size:11px;
+  margin-top:8px;
+}
+
+/* FEATURES */
+.features{
+  max-width:1150px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.card{
+  background:linear-gradient(145deg,#07100a,#030705);
+  border:1px solid var(--line);
+  padding:30px;
+  border-radius:12px;
+  position:relative;
+  overflow:hidden;
+  transition:.35s;
+}
+
+.card:before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:1px;
+  background:var(--green);
+  box-shadow:0 0 15px var(--green);
+  transition:.5s;
+}
+
+.card:hover{
+  transform:translateY(-7px);
+  border-color:rgba(0,255,102,.45);
+  box-shadow:0 15px 45px rgba(0,0,0,.35);
+}
+
+.card:hover:before{
+  left:100%;
+}
+
+.icon{
+  font-size:30px;
+  margin-bottom:20px;
+}
+
+.card h3{
+  color:#fff;
+  margin-bottom:12px;
+}
+
+.card p{
+  color:#718779;
+  line-height:1.7;
+  font-size:13px;
+}
+
+/* TERMINAL */
+.terminal{
+  max-width:900px;
+  margin:50px auto 0;
+  background:#020603;
+  border:1px solid var(--line);
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 20px 70px rgba(0,0,0,.4);
+}
+
+.term-head{
+  padding:12px 16px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+.dot{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#34483b;
+}
+
+.term-title{
+  margin-left:10px;
+  color:#6d8173;
+  font-size:11px;
+}
+
+.term-body{
+  padding:25px;
+  line-height:2;
+  font-size:13px;
+}
+
+.green{
+  color:var(--green);
+}
+
+.dim{
+  color:#557061;
+}
+
+/* PLANS */
+.plans{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.plan{
+  border:1px solid var(--line);
+  background:#050a06;
+  border-radius:12px;
+  padding:32px;
+  position:relative;
+  transition:.35s;
+}
+
+.plan:hover,
+.plan.featured{
+  border-color:rgba(0,255,102,.55);
+  transform:translateY(-6px);
+  box-shadow:0 20px 50px rgba(0,255,102,.06);
+}
+
+.featured-label{
+  position:absolute;
+  top:15px;
+  right:15px;
+  color:#001507;
+  background:var(--green);
+  padding:5px 9px;
+  border-radius:4px;
+  font-size:9px;
+  font-weight:bold;
+}
+
+.plan-name{
+  color:#819789;
+  font-size:12px;
+  letter-spacing:2px;
+}
+
+.price{
+  color:#fff;
+  font-size:40px;
+  font-weight:bold;
+  margin:15px 0;
+}
+
+.price span{
+  color:#627568;
+  font-size:12px;
+}
+
+.plan ul{
+  list-style:none;
+  margin:25px 0;
+}
+
+.plan li{
+  color:#819789;
+  padding:9px 0;
+  border-bottom:1px solid rgba(255,255,255,.04);
+  font-size:12px;
+}
+
+.plan li:before{
+  content:"✓ ";
+  color:var(--green);
+}
+
+/* PAYMENT */
+.payment{
+  max-width:850px;
+  margin:auto;
+  border:1px solid var(--line);
+  background:linear-gradient(145deg,#07100a,#020403);
+  border-radius:15px;
+  padding:35px;
+  text-align:center;
+}
+
+.payment h2{
+  color:#fff;
+  margin-bottom:10px;
+}
+
+.payment p{
+  color:#718779;
+  font-size:12px;
+}
+
+.upi{
+  margin:25px auto;
+  max-width:500px;
+  display:flex;
+  border:1px solid var(--line);
+  border-radius:7px;
+  overflow:hidden;
+}
+
+.upi input{
+  flex:1;
+  background:#020503;
+  color:var(--green);
+  border:0;
+  padding:15px;
+  outline:none;
+  font-family:inherit;
+  text-align:center;
+}
+
+.copy{
+  border:0;
+  background:var(--green);
+  color:#001507;
+  padding:0 18px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+/* COUNTDOWN */
+.countdown{
+  max-width:700px;
+  margin:35px auto 0;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.time{
+  border:1px solid var(--line);
+  background:#040805;
+  padding:20px 10px;
+}
+
+.time strong{
+  display:block;
+  color:var(--green);
+  font-size:30px;
+}
+
+.time small{
+  color:#617668;
+  font-size:9px;
+}
+
+/* CTA */
+.cta{
+  text-align:center;
+  padding:100px 20px;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:radial-gradient(circle,rgba(0,255,102,.06),transparent 60%);
+}
+
+.cta h2{
+  font-size:clamp(30px,6vw,65px);
+  color:#fff;
+}
+
+.cta h2 span{
+  color:var(--green);
+}
+
+/* FOOTER */
+footer{
+  padding:40px 6%;
+  text-align:center;
+  color:#506257;
+  font-size:11px;
+}
+
+footer strong{
+  color:var(--green);
+}
+
+/* REVEAL */
+.reveal{
+  opacity:1;
+  transform:none;
+  transition:1s;
+}
+
+.reveal.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* MOBILE */
+@media(max-width:800px){
+  .nav{
+    padding:15px 5%;
+  }
+
+  .nav-links{
+    position:absolute;
+    top:65px;
+    left:0;
+    width:100%;
+    background:#020503;
+    flex-direction:column;
     padding:20px;
-    color:#888;
+    display:none;
+    border-bottom:1px solid var(--line);
+  }
+
+  .nav-links.open{
+    display:flex;
+  }
+
+  .menu{
+    display:block;
+  }
+
+  .hero{
+    min-height:82vh;
+  }
+
+  .hero-ring{
+    width:350px;
+    height:350px;
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .stat:nth-child(2){
+    border-right:0;
+  }
+
+  .stat:nth-child(-n+2){
+    border-bottom:1px solid var(--line);
+  }
+
+  .features,
+  .plans{
+    grid-template-columns:1fr;
+  }
+
+  .countdown{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:480px){
+  section{
+    padding:70px 5%;
+  }
+
+  .hero h1{
+    letter-spacing:-2px;
+  }
+
+  .hero-sub{
+    font-size:12px;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .stat{
+    padding:25px 10px;
+  }
+
+  .stat-number{
+    font-size:27px;
+  }
+
+  .payment{
+    padding:25px 15px;
+  }
+
+  .upi{
+    flex-direction:column;
+  }
+
+  .copy{
+    padding:13px;
+  }
 }
 </style>
 </head>
 
 <body>
-
-<div class="header">
-    <div class="logo">👑 PRINCE LIVE 👑</div>
+<div id="live-clock" style="text-align:center;margin:15px 0;color:#00ffcc;font-weight:700;font-size:18px;">
+  🕒 <span id="clock">00:00:00</span>
 </div>
+<script>
+function updateClock(){
+  const now = new Date();
+  const time = now.toLocaleTimeString('en-IN', {
+    timeZone:'Asia/Kolkata',
+    hour:'2-digit',
+    minute:'2-digit',
+    second:'2-digit',
+    hour12:true
+  });
+  document.getElementById('clock').textContent = time;
+}
+updateClock();
+setInterval(updateClock,1000);
+</script>
 
-<div class="hero">
-    <h1>⚡ PREMIUM ACCESS PORTAL ⚡</h1>
-    <p>SECURE • FAST • PREMIUM • LIFETIME</p>
-</div>
 
-<div class="card">
-    <h2>🥉 BASIC PLAN</h2>
-    <div class="price">₹99</div>
-    <p>1 Month Access</p>
+<div id="progress"></div>
 
-    <a class="btn" href="https://t.me/UltraFastPayment_Bot">
-        BUY BASIC ₹99
-    </a>
-</div>
+<!-- PARTICLES -->
+<div class="particle" style="left:8%;animation-delay:0s"></div>
+<div class="particle" style="left:18%;animation-delay:2s"></div>
+<div class="particle" style="left:32%;animation-delay:4s"></div>
+<div class="particle" style="left:47%;animation-delay:1s"></div>
+<div class="particle" style="left:61%;animation-delay:5s"></div>
+<div class="particle" style="left:76%;animation-delay:3s"></div>
+<div class="particle" style="left:91%;animation-delay:6s"></div>
 
-<div class="card">
-    <h2>🥈 PREMIUM PLAN</h2>
-    <div class="price">₹499</div>
-    <p>Premium Features</p>
+<!-- NAV -->
+<nav class="nav">
+  <div class="brand">👑 PRINCE <span>LIVE</span></div>
 
-    <a class="btn" href="https://t.me/UltraFastPayment_Bot">
-        BUY PREMIUM ₹499
-    </a>
-</div>
+  <div class="menu" onclick="toggleMenu()">☰</div>
 
-<div class="card">
-    <h2>🥇 PERMANENT PLAN</h2>
-    <div class="price">₹999</div>
-    <p>Lifetime Access</p>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">HOME</a></li>
+    <li><a href="#services">SERVICES</a></li>
+    <li><a href="#plans">PLANS</a></li>
+    <li><a href="#payment">PAYMENT</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+  </ul>
+</nav>
 
-    <a class="btn" href="https://t.me/UltraFastPayment_Bot">
-        BUY LIFETIME ₹999
-    </a>
-</div>
+<!-- HERO -->
+<header class="hero" id="home">
+  <div class="hero-ring"></div>
 
-<div class="card">
-    <h2>💳 PAYMENT INFO</h2>
+  <div class="hero-content reveal">
+    <div class="badge">● SYSTEM ONLINE // ULTRA NETWORK</div>
 
-    <p><b>UPI ID</b></p>
-    <p>princesaxena4535@okaxis</p>
+    <h1>PRINCE <span>LIVE</span></h1>
+
+    <p class="hero-sub">
+      Premium digital network for modern entertainment,
+      streaming and online services. Fast. Secure. Reliable.
+    </p>
+
+    <div class="buttons">
+
+      <a
+        href="https://t.me/BgmiLitePartner"
+        target="_blank"
+        class="btn btn-primary"
+      >
+        TELEGRAM
+      </a>
+
+      <a
+        href="https://instagram.com/stryx_prince"
+        target="_blank"
+        class="btn btn-outline"
+      >
+        INSTAGRAM
+      </a>
+
+    </div>
+
+    <div class="status">
+      <div>STATUS: <span>ONLINE</span></div>
+      <div>NETWORK: <span>ACTIVE</span></div>
+      <div>UPTIME: <span>99.9%</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- STATS -->
+<section>
+  <div class="stats reveal">
+    <div class="stat">
+      <div class="stat-number" data-target="24">0</div>
+      <div class="stat-label">HOUR SUPPORT</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-number" data-target="99">0</div>
+      <div class="stat-label">% UPTIME</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-number" data-target="500">0</div>
+      <div class="stat-label">+ USERS</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-number">5★</div>
+      <div class="stat-label">SERVICE</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-head reveal">
+    <div class="tag">// OUR SYSTEM</div>
+    <h2>Premium Services</h2>
+    <p>
+      Built for speed, reliability and a smooth digital experience.
+    </p>
+  </div>
+
+  <div class="features">
+
+    <div class="card reveal">
+      <div class="icon">⚡</div>
+      <h3>High Speed</h3>
+      <p>
+        Optimized infrastructure designed for fast and smooth access.
+      </p>
+    </div>
+
+    <div class="card reveal">
+      <div class="icon">🔐</div>
+      <h3>Secure Network</h3>
+      <p>
+        Modern security-focused architecture for a safer experience.
+      </p>
+    </div>
+
+    <div class="card reveal">
+      <div class="icon">📡</div>
+      <h3>Stable Service</h3>
+      <p>
+        Reliable service availability with continuous monitoring.
+      </p>
+    </div>
+
+    <div class="card reveal">
+      <div class="icon">🛠️</div>
+      <h3>Support</h3>
+      <p>
+        Get assistance whenever you need help with your service.
+      </p>
+    </div>
+
+    <div class="card reveal">
+      <div class="icon">🚀</div>
+      <h3>Fast Setup</h3>
+      <p>
+        Simple setup process with clear instructions and quick activation.
+      </p>
+    </div>
+
+    <div class="card reveal">
+      <div class="icon">👑</div>
+      <h3>PRINCE LIVE</h3>
+      <p>
+        One premium network. One simple experience.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- TERMINAL -->
+  <div class="terminal reveal">
+    <div class="term-head">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="term-title">prince_live@network:~</span>
+    </div>
+
+    <div class="term-body">
+      <div><span class="green">root@prince-live</span>:~$ system status</div>
+      <div class="dim">Checking network...</div>
+      <div>NETWORK_STATUS: <span class="green">ONLINE</span></div>
+      <div>SECURITY: <span class="green">ACTIVE</span></div>
+      <div>SERVER: <span class="green">STABLE</span></div>
+      <div>ACCESS: <span class="green">READY</span></div>
+      <br>
+      <div><span class="green">root@prince-live</span>:~$ _</div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section id="plans">
+  <div class="section-head reveal">
+    <div class="tag">// SELECT ACCESS</div>
+    <h2>Choose Your Plan</h2>
+    <p>
+      Select the package that fits your requirements.
+    </p>
+  </div>
+
+  <div class="plans">
+
+    <div class="plan reveal">
+      <div class="plan-name">1 DAY</div>
+      <div class="price">₹100 <span>/ 1 DAY</span></div>
+      <ul>
+        <li>1 Day Access</li>
+        <li>Fast Activation</li>
+        <li>Support</li>
+        <li>Secure Service</li>
+      </ul>
+      <a href="#payment" class="btn btn-outline">SELECT PLAN</a>
+    </div>
+
+    <div class="plan reveal">
+      <div class="plan-name">15 DAY</div>
+      <div class="price">₹400 <span>/ 15 DAYS</span></div>
+      <ul>
+        <li>15 Days Access</li>
+        <li>Fast Activation</li>
+        <li>Support</li>
+        <li>Secure Service</li>
+      </ul>
+      <a href="#payment" class="btn btn-outline">SELECT PLAN</a>
+    </div>
+
+    <div class="plan featured reveal">
+      <div class="featured-label">POPULAR</div>
+      <div class="plan-name">30 DAY</div>
+      <div class="price">₹600 <span>/ 30 DAYS</span></div>
+      <ul>
+        <li>30 Days Access</li>
+        <li>Premium Access</li>
+        <li>Priority Support</li>
+        <li>Fast Activation</li>
+      </ul>
+      <a href="#payment" class="btn btn-primary">SELECT PLAN</a>
+    </div>
+
+    <div class="plan reveal">
+      <div class="plan-name">60 DAY</div>
+      <div class="price">₹800 <span>/ 60 DAYS</span></div>
+      <ul>
+        <li>60 Days Access</li>
+        <li>Premium Service</li>
+        <li>Priority Support</li>
+        <li>Fast Activation</li>
+      </ul>
+      <a href="#payment" class="btn btn-outline">SELECT PLAN</a>
+    </div>
+
+    <div class="plan reveal">
+      <div class="plan-name">PERMANENT</div>
+      <div class="price">₹1000 <span>/ LIFETIME</span></div>
+      <ul>
+        <li>Permanent Access</li>
+        <li>Premium Service</li>
+        <li>Priority Support</li>
+        <li>Fast Activation</li>
+      </ul>
+      <a href="#payment" class="btn btn-outline">SELECT PLAN</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section>
+  <div class="section-head reveal">
+    <div class="tag">// LIVE EVENT</div>
+    <h2>Limited Offer</h2>
+    <p>Offer timer automatically updates on this page.</p>
+  </div>
+
+  <div class="countdown reveal">
+    <div class="time">
+      <strong id="days">00</strong>
+      <small>DAYS</small>
+    </div>
+
+    <div class="time">
+      <strong id="hours">00</strong>
+      <small>HOURS</small>
+    </div>
+
+    <div class="time">
+      <strong id="minutes">00</strong>
+      <small>MINUTES</small>
+    </div>
+
+    <div class="time">
+      <strong id="seconds">00</strong>
+      <small>SECONDS</small>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT -->
+<section id="payment">
+  <div class="payment reveal">
+    <div class="tag">// PAYMENT TERMINAL</div>
+    <h2>Quick Payment</h2>
 
     <p>
-    Payment karne ke baad screenshot Telegram Bot par bheje.
-    Verification ke baad access/file provide ki jayegi.
+      Replace the UPI ID below with your real payment ID.
     </p>
-</div>
 
-<div class="card">
-    <h2>📸 INSTAGRAM</h2>
-    <p>@stryx_prince</p>
+    <div class="upi">
+      <input
+        id="upiInput"
+        value="princesaxena4535-1@oksbi"
+        readonly
+      >
+      <button class="copy" onclick="copyUPI()">COPY</button>
+    </div>
 
-    <a class="btn" href="https://instagram.com/stryx_prince">
-        OPEN INSTAGRAM
-    </a>
-</div>
+    <div class="buttons">
+      <a
+        class="btn btn-primary"
+        href="upi://pay?pa=princesaxena4535-1@oksbi&pn=PRINCE%20LIVE&cu=INR"
+      >
+        PAY WITH UPI
+      </a>
+    </div>
 
-<div class="card">
-    <h2>👑 OWNER & HELP</h2>
+    <p id="copyMsg" style="margin-top:15px;color:#00ff66;"></p>
+  </div>
+</section>
 
-    <p><b>STRYX PRINCE</b></p>
-    <p>Need Help? Contact Directly</p>
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="reveal">
+    <div class="tag">// PRINCE LIVE</div>
 
-    <a class="btn" href="https://t.me/stryxprince">
-        MESSAGE OWNER
-    </a>
-</div>
+    <h2>READY TO <span>CONNECT?</span></h2>
 
-<div class="card">
-    <h2>🤖 TELEGRAM BOT</h2>
+    <p style="color:#728879;margin:20px auto;max-width:600px;line-height:1.7;">
+      Join the network and get connected with PRINCE LIVE.
+    </p>
 
-    <a class="btn" href="https://t.me/UltraFastPayment_Bot">
-        OPEN BOT
-    </a>
-</div>
+    <div class="buttons">
 
-<div class="footer">
-    © 2026 PRINCE LIVE | All Rights Reserved
-</div>
+      <!-- APNA TELEGRAM LINK YAHAN LAGAO -->
+      <a
+        href="https://t.me/BgmiLitePartner"
+        target="_blank"
+        class="btn btn-primary"
+      >
+        TELEGRAM
+      </a>
 
-</body>
-</html>
+      <a
+        href="https://t.me/StryxOwner"
+        <a href="https://instagram.com/stryx_prince" target="_blank" class="btn btn-outline">INSTAGRAM</a>
+        class="btn btn-outline"
+      >
+        EMAIL
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    © <span id="year"></span>
+    <strong>PRINCE LIVE</strong>
+    — ULTRA DIGITAL NETWORK
+  </div>
+
+  <div style="margin-top:10px;">
+    SYSTEM STATUS: <strong>ONLINE</strong>
+  </div>
+</footer>
+
+<script>
+
+/* MOBILE MENU */
+function toggleMenu(){
+  document.getElementById("navLinks").classList.toggle("open");
+}
+
+document.querySelectorAll(".nav-links a").forEach(link=>{
+  link.addEventListener("click",()=>{
+    document.getElementById("navLinks").classList.remove("open");
+  });
+});
+
+/* SCROLL PROGRESS */
+window.addEventListener("scroll",()=>{
+  const scrollTop =
+    document.documentElement.scrollTop || document.body.scrollTop;
+
+  const height =
+    document.documentElement.scrollHeight -
+    document.documentElement.clientHeight;
+
+  const progress =
+    height > 0 ? (scrollTop / height) * 100 : 0;
+
+  document.getElementById("progress").style.width =
+    progress + "%";
+});
+
+/* REVEAL ANIMATION */
+const observer = new IntersectionObserver(
+  entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add("show");
+      }
+    });
+  },
+  {threshold:.12}
+);
+
+document.querySelectorAll(".reveal").forEach(el=>{
+  observer.observe(el);
+});
+
+/* COUNTERS */
+let counterStarted = false;
+
+function startCounters(){
+
+  if(counterStarted) return;
+
+  const stats =
+    document.querySelectorAll(".stat-number[data-target]");
+
+  const rect =
+    document.querySelector(".stats").getBoundingClientR
